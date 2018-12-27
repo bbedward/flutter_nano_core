@@ -22,7 +22,6 @@ class NanoAccountEncodes {
   }
 
   String getCharacter(String binary) {
-    print("retreiving ${binary}");
     return characterTable[binary];
   }
 
@@ -36,7 +35,7 @@ class NanoAccountEncodes {
 
   String encode(String decoded) {
     String encoded = "";
-    for (int i = 0; i < encoded.length; i++) {
+    for (int i = 0; i < decoded.length; i++) {
       encoded += getCharacter(decoded.substring(i, i+ 5));
     }
     return encoded;
