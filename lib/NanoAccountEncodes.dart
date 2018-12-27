@@ -3,14 +3,13 @@ library flutter_nano_core.nanoaccountencodes;
 import 'dart:collection';
 
 class NanoAccountEncodes {
-  // Possible characters an account may contain
-  List<String> accountMap = "13456789abcdefghijkmnopqrstuwxyz".split(' ');
-
   // Characters mapped to binary
   HashMap<String, String> characterTable = new HashMap();
   HashMap<String, String> binaryTable = new HashMap();
 
   NanoAccountEncodes() {
+    // Possible characters an account may contain
+    List<String> accountMap = "13456789abcdefghijkmnopqrstuwxyz".split('');
     for (int i = 0; i < accountMap.length; i++) {
       String binary = i.toRadixString(2).padLeft(5, "0");
       characterTable[binary] = accountMap[i];
@@ -23,6 +22,7 @@ class NanoAccountEncodes {
   }
 
   String getCharacter(String binary) {
+    print("retreiving ${binary}");
     return characterTable[binary];
   }
 

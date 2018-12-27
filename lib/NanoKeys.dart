@@ -2,6 +2,7 @@ library flutter_nano_core.nanokeys;
 
 import 'dart:typed_data' show Uint8List;
 
+import 'package:flutter_nano_core/ed25519_blake2b.dart';
 import 'package:flutter_nano_core/Hashes.dart';
 import 'package:flutter_nano_core/NanoHelpers.dart';
 import 'package:flutter_nano_core/NanoSeeds.dart';
@@ -15,7 +16,6 @@ class NanoKeys {
 
   static String createPublicKey(String privateKey) {
     assert(NanoSeeds.isValidSeed(privateKey));
-    return null;
-    //return NanoHelpers.byteToHex(publicKey(NanoHelpers.hexToBytes(privateKey)));
+    return NanoHelpers.byteToHex(publicKey(NanoHelpers.hexToBytes(privateKey)));
   }
 }
