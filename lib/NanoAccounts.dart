@@ -11,6 +11,7 @@ class NanoAccounts {
   static NanoAccountEncodes encoder = new NanoAccountEncodes();
 
   static String createAccount(int accountType, String publicKey) {
+    assert(accountType == NanoAccountType.BANANO || accountType == NanoAccountType.NANO);
     var binaryPubkey = NanoHelpers.hexToBinary(publicKey).padLeft(260, "0");
     var encodedChecksum = calculatedEncodedChecksum(binaryPubkey);
     var encodedPubkey = encoder.encode(binaryPubkey);
