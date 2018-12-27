@@ -13,8 +13,11 @@ class NanoAccounts {
   static String createAccount(int accountType, String publicKey) {
     assert(accountType == NanoAccountType.BANANO || accountType == NanoAccountType.NANO);
     var binaryPubkey = NanoHelpers.hexToBinary(publicKey).padLeft(260, "0");
+    print('binaryPubkey ${binaryPubkey}');
     var encodedChecksum = calculatedEncodedChecksum(binaryPubkey);
+    print('encodedChecksum ${encodedChecksum}');
     var encodedPubkey = encoder.encode(binaryPubkey);
+    print('encodedPubKey ${encodedPubkey}');
     return NanoAccountType.getPrefix(accountType) + encodedPubkey + encodedChecksum;
   }
 
