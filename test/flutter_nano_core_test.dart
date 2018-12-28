@@ -30,6 +30,11 @@ void main() {
     expect(NanoHelpers.binaryToHex(binary), hex);
   });
 
+  test('test bigint to byte and back', () {
+    var raw = BigInt.parse('1000000000000000000000000000000');
+    var byteRaw = NanoHelpers.bigIntToBytes(raw);
+    expect(NanoHelpers.byteToHex(byteRaw), raw);
+  });
   test('test address validation', () {
     // Three valid accounts
     expect(NanoAccounts.isValid(NanoAccountType.BANANO, 'ban_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc'), true);
