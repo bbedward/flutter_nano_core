@@ -10,6 +10,6 @@ class NanoKeys {
 
   static String createPublicKey(String privateKey) {
     assert(NanoSeeds.isValidSeed(privateKey));
-    return NanoHelpers.byteToHex(Box.keyPair_fromSecretKey(NanoHelpers.hexToBytes(privateKey)).publicKey);
+    return NanoHelpers.byteToHex(Signature.keyPair_fromSecretKey(NanoHelpers.hexToBytes(privateKey)).publicKey);
   }
 }
