@@ -1,5 +1,3 @@
-library flutter_nano_core.nanoaccounts;
-
 import "dart:typed_data" show Uint8List;
 
 import 'package:flutter_nano_core/flutter_nano_core.dart';
@@ -16,6 +14,30 @@ class NanoAccounts {
     var encodedPubkey = encoder.encode(binaryPubkey);
     print('encodedPubKey ${encodedPubkey}');
     return NanoAccountType.getPrefix(accountType) + encodedPubkey + encodedChecksum;
+  }
+
+  static bool isValid(int accountType, String account) {
+    assert(accountType == NanoAccountType.BANANO || accountType == NanoAccountType.NANO);
+    assert(account != null);
+    // Ensure regex match
+    if (!account.contains(new RegExp(NanoAccountType.getRegex(accountType)))) {
+      return false;
+    }
+    String expectedChecksum = account.substring(account.length - 8);
+    String encodedChecksum = calculatedEncodedChecksum(extractPublicKey(account));
+    return expectedChecksum == encodedChecksum;
+  }
+
+  static String extractEncodedPublicKey(String account) {
+    return account.startsWith("nano_") ? account.substring(5, 57) : account.substring(4, 56);
+  }
+
+  static String extractPublicKey(String account) {
+    assert(account != null);
+    String encodedPublicKey = extractEncodedPublicKey(account);
+    String binaryPublicKey = encoder.decode(encodedPublicKey).substring(4);
+    String hexPublicKey = NanoHelpers.binaryToHex(binaryPublicKey).padLeft(64, "0");
+    return hexPublicKey;
   }
 
   static String calculatedEncodedChecksum(String publicKey) {
