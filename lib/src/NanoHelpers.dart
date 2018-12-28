@@ -1,5 +1,6 @@
 import 'dart:typed_data' show Uint8List;
 import 'package:hex/hex.dart';
+import 'package:pointycastle/src/utils.dart';
 
 class NanoHelpers {
   static List<String> hexArray = '0123456789ABCDEF'.split('');
@@ -11,11 +12,19 @@ class NanoHelpers {
     return HEX.encode(bytes);
   }
 
+  static BigInt byteToBigInt(Uint8List bigIntBytes) {
+    return decodeBigInt(bigIntBytes);
+  }
+
   /**
    * Converts a hex string to a Uint8List
    */
   static Uint8List hexToBytes(String hex) {
     return Uint8List.fromList(HEX.decode(hex));
+  }
+
+  static Uint8List bigIntToBytes(BigInt bigInt) {
+    return encodeBigInt(bigInt);
   }
 
   /**

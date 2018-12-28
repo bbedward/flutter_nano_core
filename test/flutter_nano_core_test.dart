@@ -42,4 +42,15 @@ void main() {
     // Invalid prefix
     expect(NanoAccounts.isValid(NanoAccountType.BANANO, 'xrb_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc'), false);
   });
+
+  test('test block hash computation', () {
+    var accountType = NanoAccountType.NANO;
+    var account = 'xrb_1ak9nqn1m5u5ze4yr4rfm7rnwjny1qw96r46ncm88oiophz8yakdggfb6bo4';
+    var previous = '3DA527883F4C39A1C7C312DEB55766E975B512544595D574347B5F04BF19413E';
+    var representative = 'xrb_3rw4un6ys57hrb39sy1qx8qy5wukst1iiponztrz9qiz6qqa55kxzx4491or';
+    var balance = BigInt.parse('30109202700477890000000000000000000');
+    var link = 'xrb_3ok55uirensct6yjq6j5w7k9w38hngubozjgi77cwsgaxuh9m9gkqek1f4yi';
+    expect(NanoBlocks.computeStateHash(accountType, account, previous, representative, balance, link),
+          '714DC230267C4E5A6BA0D61E6B90410C67D17F649A2752297E3115F12AEFBD9E');
+  });
 }
