@@ -1,8 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_nano_core/NanoAccounts.dart';
-import 'package:flutter_nano_core/NanoAccountType.dart';
-import 'package:flutter_nano_core/NanoKeys.dart';
+import 'package:flutter_nano_core/flutter_nano_core.dart';
 
 void main() {
   test('test seed to private key', () {
@@ -18,5 +16,11 @@ void main() {
     expect(NanoAccounts.createAccount(NanoAccountType.NANO, 
                                       NanoKeys.createPublicKey(privKey)),
           'nano_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc');
+  });
+
+  test('test hex to byte array and back', () {
+    var initialPrivkey = '67EDBC8F904091738DF33B4B6917261DB91DD9002D3985A7BA090345264A46C6';
+    var byteKey = NanoHelpers.hexToBytes('67EDBC8F904091738DF33B4B6917261DB91DD9002D3985A7BA090345264A46C6');
+    expect(NanoHelpers.byteToHex(byteKey), initialPrivkey);
   });
 }

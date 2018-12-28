@@ -1,5 +1,3 @@
-library flutter_nano_core.nanoaccountencodes;
-
 import 'dart:collection';
 
 class NanoAccountEncodes {

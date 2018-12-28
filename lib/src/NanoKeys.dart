@@ -1,11 +1,5 @@
-library flutter_nano_core.nanokeys;
-
 import 'dart:typed_data' show Uint8List;
-
-import 'package:flutter_nano_core/ed25519_blake2b.dart';
-import 'package:flutter_nano_core/Hashes.dart';
-import 'package:flutter_nano_core/NanoHelpers.dart';
-import 'package:flutter_nano_core/NanoSeeds.dart';
+import 'package:flutter_nano_core/flutter_nano_core.dart';
 
 class NanoKeys {
   static String seedToPrivate(String seed, int index) {
@@ -16,6 +10,6 @@ class NanoKeys {
 
   static String createPublicKey(String privateKey) {
     assert(NanoSeeds.isValidSeed(privateKey));
-    return NanoHelpers.byteToHex(publicKey(NanoHelpers.hexToBytes(privateKey)));
+    return NanoHelpers.byteToHex(Box.keyPair_fromSecretKey(NanoHelpers.hexToBytes(privateKey)).publicKey);
   }
 }

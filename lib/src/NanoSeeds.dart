@@ -1,6 +1,5 @@
-library flutter_nano_core.nanoseeds;
-
 import 'dart:math';
+import 'package:flutter_nano_core/flutter_nano_core.dart';
 
 class NanoSeeds {
   // Returns true if a seed is valid, false otherwise

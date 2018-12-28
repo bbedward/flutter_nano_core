@@ -2,10 +2,7 @@ library flutter_nano_core.nanoaccounts;
 
 import "dart:typed_data" show Uint8List;
 
-import "package:flutter_nano_core/Hashes.dart";
-import "package:flutter_nano_core/NanoAccountEncodes.dart";
-import "package:flutter_nano_core/NanoAccountType.dart";
-import "package:flutter_nano_core/NanoHelpers.dart";
+import 'package:flutter_nano_core/flutter_nano_core.dart';
 
 class NanoAccounts {
   static NanoAccountEncodes encoder = new NanoAccountEncodes();

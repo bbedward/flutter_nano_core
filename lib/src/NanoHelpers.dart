@@ -1,5 +1,3 @@
-library flutter_nano_core.nanohelpers;
-
 import 'dart:typed_data' show Uint8List;
 import 'package:hex/hex.dart';
 

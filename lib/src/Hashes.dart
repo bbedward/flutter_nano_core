@@ -1,9 +1,7 @@
-library flutter_nano_core.hashes;
-
 import 'dart:typed_data' show Uint8List;
 
 import 'package:pointycastle/digests/blake2b.dart';
-import 'package:flutter_nano_core/NanoHelpers.dart';
+import 'package:flutter_nano_core/flutter_nano_core.dart';
 
 class Hashes {
     static const int DIGEST_256 = 256 ~/ 8;
