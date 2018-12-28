@@ -16,11 +16,20 @@ class NanoAccounts {
     return NanoAccountType.getPrefix(accountType) + encodedPubkey + encodedChecksum;
   }
 
+  static String findAccountInString(int accountType, String account) {
+    assert(accountType == NanoAccountType.BANANO || accountType == NanoAccountType.NANO);
+    assert(account != null);
+    // Ensure regex match
+    RegExp regEx = new RegExp(NanoAccountType.getRegex(accountType));
+    return regEx.stringMatch(account);
+  }
+
   static bool isValid(int accountType, String account) {
     assert(accountType == NanoAccountType.BANANO || accountType == NanoAccountType.NANO);
     assert(account != null);
     // Ensure regex match
-    if (!account.contains(new RegExp(NanoAccountType.getRegex(accountType)))) {
+    RegExp regEx = new RegExp(NanoAccountType.getRegex(accountType));
+    if (!regEx.hasMatch(account)) {
       return false;
     }
     String expectedChecksum = account.substring(account.length - 8);
