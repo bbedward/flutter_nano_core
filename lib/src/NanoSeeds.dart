@@ -9,14 +9,7 @@ class NanoSeeds {
       return false;
     }
     // Ensure seed only contains hex characters, 0-9;A-F
-    var hexChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a',
-    'b', 'c', 'd', 'e', 'f', 'A', 'B', 'C', 'D', 'E', 'F'];
-    for (int i = 0; i < seed.length; i++) {
-      if (!hexChars.contains(seed[i])) {
-        return false;
-      }
-    }
-    return true;
+    return NanoHelpers.isHexString(seed);
   }
 
   static String generateSeed() {

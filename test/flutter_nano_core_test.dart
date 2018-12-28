@@ -33,7 +33,7 @@ void main() {
   test('test bigint to byte and back', () {
     var raw = BigInt.parse('1000000000000000000000000000000');
     var byteRaw = NanoHelpers.bigIntToBytes(raw);
-    expect(NanoHelpers.byteToHex(byteRaw), raw);
+    expect(NanoHelpers.byteToBigInt(byteRaw), raw);
   });
   test('test address validation', () {
     // Three valid accounts

@@ -33,7 +33,12 @@ class NanoAccounts {
       return false;
     }
     String expectedChecksum = account.substring(account.length - 8);
-    String encodedChecksum = calculatedEncodedChecksum(extractPublicKey(account));
+    String encodedChecksum;
+    try {
+      encodedChecksum = calculatedEncodedChecksum(extractPublicKey(account));
+    } catch (e) {
+      return false;
+    }
     return expectedChecksum == encodedChecksum;
   }
 

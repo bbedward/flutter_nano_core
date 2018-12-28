@@ -48,4 +48,15 @@ class NanoHelpers {
     }
     return reversed;
   }
+
+  static bool isHexString(String input) {
+    var hexChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a',
+    'b', 'c', 'd', 'e', 'f', 'A', 'B', 'C', 'D', 'E', 'F'];
+    for (int i = 0; i < input.length; i++) {
+      if (!hexChars.contains(input[i])) {
+        return false;
+      }
+    }
+    return true;
+  }
 }

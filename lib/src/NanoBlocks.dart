@@ -8,7 +8,7 @@ class NanoBlocks {
     Uint8List previousBytes = NanoHelpers.hexToBytes(previous.padLeft(64, "0"));
     Uint8List representativeBytes = NanoHelpers.hexToBytes(NanoAccounts.extractPublicKey(representative));
     Uint8List balanceBytes = NanoHelpers.bigIntToBytes(balance);
-    Uint8List linkBytes = NanoAccounts.isValid(accountType, link) ? NanoAccounts.extractPublicKey(link) : NanoHelpers.hexToBytes(link);
+    Uint8List linkBytes = NanoAccounts.isValid(accountType, link) ? NanoHelpers.hexToBytes(NanoAccounts.extractPublicKey(link)) : NanoHelpers.hexToBytes(link);
     return NanoHelpers.byteToHex(Hashes.digest256([accountBytes, previousBytes, representativeBytes, balanceBytes, linkBytes])).toUpperCase();
   }
 }
