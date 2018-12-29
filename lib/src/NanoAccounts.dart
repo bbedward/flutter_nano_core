@@ -53,7 +53,9 @@ class NanoAccounts {
 
   static String calculatedEncodedChecksum(String publicKey) {
     Uint8List checksum = NanoHelpers.reverse(Hashes.digest(5, [NanoHelpers.hexToBytes(publicKey)]));
-    String binaryChecksum = NanoHelpers.hexToBinary(NanoHelpers.byteToHex(checksum)).padLeft(8, "0");
+    print('reversed');
+    String binaryChecksum = NanoHelpers.hexToBinary(NanoHelpers.byteToHex(checksum)).padLeft(40, "0");
+    print('binned');
     return encoder.encode(binaryChecksum);
   }
 }

@@ -13,3 +13,5 @@ pubspec.lock
 doc/api/
 
 .idea
+
+android/local.properties

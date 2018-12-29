@@ -9,7 +9,7 @@ class NanoHelpers {
    * Converts a Uint8List to a hex string
    */
   static String byteToHex(Uint8List bytes) {
-    return HEX.encode(bytes);
+    return HEX.encode(bytes).toUpperCase();
   }
 
   static BigInt byteToBigInt(Uint8List bigIntBytes) {
@@ -27,16 +27,8 @@ class NanoHelpers {
    * Convert a bigint to a byte array
    */
   static Uint8List bigIntToBytes(BigInt bigInt) {
-    var bytes = encodeBigInt(bigInt);
-    Uint8List tmp = new Uint8List(16);
-    int sourcePosition = bytes.length <= 16 ? 0 : 1;
-    int bytesLength = bytes.length <= 16 ? bytes.length : 16;
-    arraycopy(bytes, sourcePosition, tmp, tmp.length - bytesLength, bytesLength);
-    return tmp;
-  }
-
-  static void arraycopy(List src, int srcPos, List dest, int destPos, int length) {
-    dest.setRange(destPos, length + destPos, src, srcPos);
+    var asHex = bigInt.toRadixString(16).padLeft(32, "0");
+    return hexToBytes(asHex);
   }
 
   /**
