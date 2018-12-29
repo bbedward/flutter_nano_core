@@ -1,4 +1,3 @@
-import 'dart:typed_data' show Uint8List;
 import 'package:flutter_nano_core/flutter_nano_core.dart';
 
 class NanoKeys {
@@ -10,6 +9,6 @@ class NanoKeys {
 
   static String createPublicKey(String privateKey) {
     assert(NanoSeeds.isValidSeed(privateKey));
-    return NanoHelpers.byteToHex(Signature.keyPair_fromSecretKey(NanoHelpers.hexToBytes(privateKey)).publicKey);
+    return NanoHelpers.byteToHex(RaiBlocks.pkFromSecret(NanoHelpers.hexToBytes(privateKey)));
   }
 }

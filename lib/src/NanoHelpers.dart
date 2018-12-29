@@ -23,8 +23,20 @@ class NanoHelpers {
     return Uint8List.fromList(HEX.decode(hex));
   }
 
+  /**
+   * Convert a bigint to a byte array
+   */
   static Uint8List bigIntToBytes(BigInt bigInt) {
-    return encodeBigInt(bigInt);
+    var bytes = encodeBigInt(bigInt);
+    Uint8List tmp = new Uint8List(16);
+    int sourcePosition = bytes.length <= 16 ? 0 : 1;
+    int bytesLength = bytes.length <= 16 ? bytes.length : 16;
+    arraycopy(bytes, sourcePosition, tmp, tmp.length - bytesLength, bytesLength);
+    return tmp;
+  }
+
+  static void arraycopy(List src, int srcPos, List dest, int destPos, int length) {
+    dest.setRange(destPos, length + destPos, src, srcPos);
   }
 
   /**

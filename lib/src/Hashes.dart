@@ -12,7 +12,7 @@ class Hashes {
 
     static Uint8List digest(int digestSize, List<Uint8List> byteArrays) {
       var blake2b = Blake2bDigest(digestSize: digestSize);
-      byteArrays.forEach((byteArray) => blake2b.update(byteArray, 0, byteArray.length));
+      byteArrays.forEach((byteArray) { print('b2b ${NanoHelpers.byteToHex(byteArray)}'); blake2b.update(byteArray, 0, byteArray.length); });
       Uint8List output = new Uint8List(digestSize);
       blake2b.doFinal(output, 0);
       return output;

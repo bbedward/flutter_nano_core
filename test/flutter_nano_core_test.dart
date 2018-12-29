@@ -38,7 +38,7 @@ void main() {
   test('test address validation', () {
     // Three valid accounts
     expect(NanoAccounts.isValid(NanoAccountType.BANANO, 'ban_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc'), true);
-    expect(NanoAccounts.isValid(NanoAccountType.NANO, 'xrg_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc'), true);
+    expect(NanoAccounts.isValid(NanoAccountType.NANO, 'xrb_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc'), true);
     expect(NanoAccounts.isValid(NanoAccountType.NANO, 'nano_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc'), true);
     // Invalid checksum
     expect(NanoAccounts.isValid(NanoAccountType.BANANO, 'ban_3zzzzzzzzzzzhw11111111111111111111111111111111111111spcronyu'), false);
@@ -49,18 +49,16 @@ void main() {
   });
 
   test('test block hash computation', () {
-    // given
+    // open state block
     var accountType = NanoAccountType.NANO;
-    var account = 'xrb_1ak9nqn1m5u5ze4yr4rfm7rnwjny1qw96r46ncm88oiophz8yakdggfb6bo4';
-    var previous = '3DA527883F4C39A1C7C312DEB55766E975B512544595D574347B5F04BF19413E';
-    var representative = 'xrb_3rw4un6ys57hrb39sy1qx8qy5wukst1iiponztrz9qiz6qqa55kxzx4491or';
-    var balance = BigInt.parse('30109202700477890000000000000000000');
-    var link = 'xrb_3ok55uirensct6yjq6j5w7k9w38hngubozjgi77cwsgaxuh9m9gkqek1f4yi';
-
+    var account = 'xrb_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php';
+    var previous = '0';
+    var representative = 'xrb_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j';
+    var balance = BigInt.parse('1');
+    var link = '1EF0AD02257987B48030CC8D38511D3B2511672F33AF115AD09E18A86A8355A8';
     var calculatedHash = NanoBlocks.computeStateHash(accountType, account, previous, representative, balance, link);
-
     expect(calculatedHash,
-          '714DC230267C4E5A6BA0D61E6B90410C67D17F649A2752297E3115F12AEFBD9E');
+          'FC5A7FB777110A858052468D448B2DF22B648943C097C0608D1E2341007438B0');
   });
 
   test('test block signature', () {
