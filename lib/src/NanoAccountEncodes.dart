@@ -33,8 +33,8 @@ class NanoAccountEncodes {
 
   String encode(String decoded) {
     String encoded = "";
-    for (int i = 0; i < decoded.length; i+=5) {
-      encoded += getCharacter(decoded.substring(i, i+5));
+    for (int i = 0; i < decoded.length; i += 5) {
+      encoded += getCharacter(decoded.substring(i, i + 5));
     }
     return encoded;
   }

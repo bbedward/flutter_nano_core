@@ -6,15 +6,19 @@ class NanoAccounts {
   static NanoAccountEncodes encoder = new NanoAccountEncodes();
 
   static String createAccount(int accountType, String publicKey) {
-    assert(accountType == NanoAccountType.BANANO || accountType == NanoAccountType.NANO);
+    assert(accountType == NanoAccountType.BANANO ||
+        accountType == NanoAccountType.NANO);
     var binaryPubkey = NanoHelpers.hexToBinary(publicKey).padLeft(260, "0");
     var encodedChecksum = calculatedEncodedChecksum(publicKey);
     var encodedPubkey = encoder.encode(binaryPubkey);
-    return NanoAccountType.getPrefix(accountType) + encodedPubkey + encodedChecksum;
+    return NanoAccountType.getPrefix(accountType) +
+        encodedPubkey +
+        encodedChecksum;
   }
 
   static String findAccountInString(int accountType, String account) {
-    assert(accountType == NanoAccountType.BANANO || accountType == NanoAccountType.NANO);
+    assert(accountType == NanoAccountType.BANANO ||
+        accountType == NanoAccountType.NANO);
     assert(account != null);
     // Ensure regex match
     RegExp regEx = new RegExp(NanoAccountType.getRegex(accountType));
@@ -22,8 +26,12 @@ class NanoAccounts {
   }
 
   static bool isValid(int accountType, String account) {
-    assert(accountType == NanoAccountType.BANANO || accountType == NanoAccountType.NANO);
+    assert(accountType == NanoAccountType.BANANO ||
+        accountType == NanoAccountType.NANO);
     assert(account != null);
+    if (account == null) {
+      return false;
+    }
     // Ensure regex match
     RegExp regEx = new RegExp(NanoAccountType.getRegex(accountType));
     if (!regEx.hasMatch(account)) {
@@ -40,20 +48,26 @@ class NanoAccounts {
   }
 
   static String extractEncodedPublicKey(String account) {
-    return account.startsWith("nano_") ? account.substring(5, 57) : account.substring(4, 56);
+    return account.startsWith("nano_")
+        ? account.substring(5, 57)
+        : account.substring(4, 56);
   }
 
   static String extractPublicKey(String account) {
     assert(account != null);
     String encodedPublicKey = extractEncodedPublicKey(account);
     String binaryPublicKey = encoder.decode(encodedPublicKey).substring(4);
-    String hexPublicKey = NanoHelpers.binaryToHex(binaryPublicKey).padLeft(64, "0");
+    String hexPublicKey =
+        NanoHelpers.binaryToHex(binaryPublicKey).padLeft(64, "0");
     return hexPublicKey;
   }
 
   static String calculatedEncodedChecksum(String publicKey) {
-    Uint8List checksum = NanoHelpers.reverse(Hashes.digest(5, [NanoHelpers.hexToBytes(publicKey)]));
-    String binaryChecksum = NanoHelpers.hexToBinary(NanoHelpers.byteToHex(checksum)).padLeft(40, "0");
+    Uint8List checksum = NanoHelpers.reverse(
+        Hashes.digest(5, [NanoHelpers.hexToBytes(publicKey)]));
+    String binaryChecksum =
+        NanoHelpers.hexToBinary(NanoHelpers.byteToHex(checksum))
+            .padLeft(40, "0");
     return encoder.encode(binaryChecksum);
   }
 }
