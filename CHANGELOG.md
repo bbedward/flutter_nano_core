@@ -1,3 +1,7 @@
+## [1.0.3] - February 20th, 2019
+
+* Switch to official pointycastle releases
+
 ## [1.0.2] - February 1st, 2019
 
 * Switch to xrb_ prefixes, some popular nano apps still don't support nano_ ones

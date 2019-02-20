@@ -1,6 +1,6 @@
 name: flutter_nano_core
 description: A plugin implementing cryptography tools used by the Nano cryptocurrency.
-version: 1.0.2
+version: 1.0.3
 author: bbedward <appdev@banano.cc>
 homepage: https://github.com/bbedward/flutter_nano_core
 
@@ -10,10 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  pointycastle:
-    git:
-      url: https://github.com/bbedward/pointycastle.git
-      ref: master
+  pointycastle: ^1.0.1
   hex: ^0.1.2
   convert: ^2.1.1
   fixnum: ^0.10.9
