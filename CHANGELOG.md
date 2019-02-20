@@ -1,3 +1,7 @@
+## [1.0.4] - February 20th, 2019
+
+* Add license
+
 ## [1.0.3] - February 20th, 2019
 
 * Switch to official pointycastle releases
