@@ -1,4 +1,4 @@
-## [1.0.5] - April 17th, 2019
+## [1.1.0] - April 17th, 2019
 
 **BREAKING**
 Switch from xrb_ to nano_ prefix
