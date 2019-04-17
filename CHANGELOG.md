@@ -1,3 +1,8 @@
+## [1.0.5] - April 17th, 2019
+
+**BREAKING**
+Switch from xrb_ to nano_ prefix
+
 ## [1.0.4] - February 20th, 2019
 
 * Add license

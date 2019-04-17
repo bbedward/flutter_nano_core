@@ -9,11 +9,11 @@ class NanoAccountType {
   static String getPrefix(int type) {
     switch (type) {
       case NANO:
-        return "xrb_";
+        return "nano_";
       case BANANO:
         return "ban_";
       default:
-        return "xrb_";
+        return "nano_";
     }
   }
 
