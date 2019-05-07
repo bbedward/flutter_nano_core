@@ -15,7 +15,7 @@ void main() {
           'ban_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc');
     expect(NanoAccounts.createAccount(NanoAccountType.NANO, 
                                       NanoKeys.createPublicKey(privKey)),
-          'xrb_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc');
+          'nano_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc');
   });
 
   test('test hex to byte array and back', () {

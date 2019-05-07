@@ -2419,7 +2419,8 @@ class RaiBlocks {
     p[3] = Int64List(16);
     var pk = new Uint8List(32);
     var blake2b = new Blake2bDigest(digestSize: 64);
-    blake2b.update(secretKey, 0, secretKey.length);
+    secretKey.forEach(
+        (byte) => blake2b.updateByte(byte));
     blake2b.doFinal(d, 0);
 
     d[0] &= 248;

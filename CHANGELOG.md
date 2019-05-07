@@ -1,3 +1,7 @@
+## [1.1.1] - May 7th, 2019
+
+* Fix some Unit tests
+
 ## [1.1.0] - April 17th, 2019
 
 **BREAKING**

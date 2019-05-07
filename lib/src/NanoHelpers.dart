@@ -40,7 +40,7 @@ class NanoHelpers {
 
   /// Converts a binary string into a hex string
   static String binaryToHex(String binary) {
-    return BigInt.parse(binary, radix: 2).toRadixString(16);
+    return BigInt.parse(binary, radix: 2).toRadixString(16).toUpperCase();
   }
 
   static Uint8List reverse(Uint8List bytes) {
