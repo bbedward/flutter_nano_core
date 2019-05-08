@@ -1,6 +1,6 @@
 name: flutter_nano_core
 description: A plugin implementing cryptography tools used by the Nano cryptocurrency.
-version: 1.1.1
+version: 1.1.2
 author: bbedward <appdev@banano.cc>
 homepage: https://github.com/bbedward/flutter_nano_core
 

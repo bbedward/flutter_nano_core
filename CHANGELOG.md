@@ -1,3 +1,9 @@
+## [1.1.2] - May 8th, 2019
+
+**IMPORTANT**
+
+* An important fix was added to public key derivation. Keys were being generated incorrectly on compiled code, on 32-bit platforms after the Dart 2.3/Flutter 1.5 update.
+
 ## [1.1.1] - May 7th, 2019
 
 * Fix some Unit tests
