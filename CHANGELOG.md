@@ -1,3 +1,7 @@
+## [1.1.3] - May 23rd, 2019
+
+* Added NanoMnemomics class for turning a seed/private key into a 24-word list and back. Check tests for usage.
+
 ## [1.1.2] - May 8th, 2019
 
 **IMPORTANT**

@@ -97,4 +97,22 @@ void main() {
     expect(signature,
           '1123C926EF53B0FFA3585D5F6FA17D05B2AAD486D28CBEED88837B83265F264CBAF3FEA78AF80AAB4C59740546B220ADBE207F6B800FFE864E0934E9C1078401');
   });
+  test('Can turn a nano seed into a mnemonic phrase and back', () {
+    String seed = 'BE3E51EE51BAB11950B2495013512FEB110D9898B4137DA268709621CE2862F4';
+    List<String> expectedWordsOrdered = [
+      'sail', 'verb', 'knee', 'pet',
+      'prison', 'million', 'drift', 'empty',
+      'exotic', 'once', 'episode', 'stomach',
+      'awkward', 'slush', 'glare', 'list',
+      'laundry', 'battle', 'bring', 'clump',
+      'brother', 'before', 'mesh', 'pair'
+    ];
+    List<String> seedAsMnemonic = NanoMnemomics.seedToMnemonic(seed);
+    expect(seedAsMnemonic.length, expectedWordsOrdered.length);
+    for (int i = 0; i < seedAsMnemonic.length; i++) {
+      expect(expectedWordsOrdered[i], seedAsMnemonic[i]);
+    }
+    /// Turn it back to a seed
+    expect(NanoMnemomics.mnemonicListToSeed(expectedWordsOrdered), seed);
+  });
 }
