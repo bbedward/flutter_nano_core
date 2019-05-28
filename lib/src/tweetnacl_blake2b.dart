@@ -805,7 +805,7 @@ class TweetNaclFast {
 
   static int _cryptoOnetimeauth(Uint8List out, final int outpos, Uint8List m,
       final int mpos, int n, Uint8List k) {
-    Poly1305 s = new Poly1305(k);
+    Poly1305 s = Poly1305(k);
     s.update(m, mpos, n);
     s.finish(out, outpos);
     return 0;
@@ -1574,11 +1574,11 @@ class TweetNaclFast {
   // TBD 64bits of n
   ///int cryptoHash(Uint8List out, Uint8List m, long n)
   static int cryptoHashOff(Uint8List out, Uint8List m, final int moff, int n) {
-    var input = new Uint8List(n);
+    Uint8List input = Uint8List(n);
     for (int i = 0; i < n; ++i) {
       input[i] = m[i];
     }
-    var blake2b = new Blake2bDigest(digestSize: n);
+    Blake2bDigest blake2b = Blake2bDigest(digestSize: n);
     blake2b.update(input, 0, input.length);
     blake2b.doFinal(out, moff);
 
@@ -1804,20 +1804,20 @@ class TweetNaclFast {
     p[2] = Uint64List(16);
     p[3] = Uint64List(16);
 
-    var pk = RaiBlocks.pkFromSecret(sk);
+    Uint8List pk = RaiBlocks.pkFromSecret(sk);
 
-    var blake2b = new Blake2bDigest(digestSize: 64);
+    Blake2bDigest blake2b = Blake2bDigest(digestSize: 64);
     blake2b.update(sk, 0, sk.length);
     blake2b.doFinal(d, 0);
     d[0] &= 248;
     d[31] &= 127;
     d[31] |= 64;
 
-    var smlen = n + 64;
+    int smlen = n + 64;
     for (i = 0; i < n; i++) sm[64 + i] = m[i + moff];
     for (i = 0; i < 32; i++) sm[32 + i] = d[32 + i];
 
-    blake2b = new Blake2bDigest(digestSize: 64);
+    blake2b = Blake2bDigest(digestSize: 64);
     blake2b.update(sm.sublist(32), 0, sm.sublist(32).length);
     blake2b.doFinal(r, 0);
 
@@ -1827,7 +1827,7 @@ class TweetNaclFast {
 
     for (i = 32; i < 64; i++) sm[i] = pk[i - 32];
 
-    blake2b = new Blake2bDigest(digestSize: 64);
+    blake2b = Blake2bDigest(digestSize: 64);
     blake2b.update(sm, 0, sm.length);
     blake2b.doFinal(h, 0);
 
@@ -1941,7 +1941,7 @@ class TweetNaclFast {
     return 0;
   }
 
-  static var jrandom = Random.secure();
+  static Random jrandom = Random.secure();
 
   static Uint8List randombytesArray(Uint8List x) {
     return randombytesArrayLen(x, x.length);
@@ -2408,15 +2408,15 @@ class Poly1305 {
 
 class RaiBlocks {
   static Uint8List pkFromSecret(Uint8List secretKey) {
-    var d = new Uint8List(64);
+    Uint8List d = Uint8List(64);
     List<Uint64List> p = List<Uint64List>(4);
 
     p[0] = Uint64List(16);
     p[1] = Uint64List(16);
     p[2] = Uint64List(16);
     p[3] = Uint64List(16);
-    var pk = new Uint8List(32);
-    var blake2b = new Blake2bDigest(digestSize: 64);
+    Uint8List pk = Uint8List(32);
+    Blake2bDigest blake2b = Blake2bDigest(digestSize: 64);
     blake2b.update(secretKey, 0, secretKey.length);
     blake2b.doFinal(d, 0);
 

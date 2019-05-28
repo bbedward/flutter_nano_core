@@ -2,8 +2,8 @@ import 'dart:collection';
 
 class NanoAccountEncodes {
   // Characters mapped to binary
-  HashMap<String, String> characterTable = new HashMap();
-  HashMap<String, String> binaryTable = new HashMap();
+  HashMap<String, String> characterTable = HashMap();
+  HashMap<String, String> binaryTable = HashMap();
 
   NanoAccountEncodes() {
     // Possible characters an account may contain

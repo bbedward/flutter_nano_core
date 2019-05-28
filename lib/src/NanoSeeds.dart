@@ -15,7 +15,7 @@ class NanoSeeds {
   static String generateSeed() {
     String result = ""; // Resulting seed when done
     String chars = "abcdef0123456789"; // Characters a seed may contain
-    var rng = new Random.secure();
+    Random rng = Random.secure();
     for (int i = 0; i < 64; i++) {
       result += chars[rng.nextInt(chars.length)];
     }

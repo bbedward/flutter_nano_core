@@ -6,9 +6,9 @@ class NanoHelpers {
 
   /// Decode a BigInt from bytes in big-endian encoding.
   static BigInt _decodeBigInt(List<int> bytes) {
-    BigInt result = new BigInt.from(0);
+    BigInt result = BigInt.from(0);
     for (int i = 0; i < bytes.length; i++) {
-      result += new BigInt.from(bytes[bytes.length - i - 1]) << (8 * i);
+      result += BigInt.from(bytes[bytes.length - i - 1]) << (8 * i);
     }
     return result;
   }
@@ -29,8 +29,7 @@ class NanoHelpers {
 
   /// Convert a bigint to a byte array
   static Uint8List bigIntToBytes(BigInt bigInt) {
-    var asHex = bigInt.toRadixString(16).padLeft(32, "0");
-    return hexToBytes(asHex);
+    return hexToBytes(bigInt.toRadixString(16).padLeft(32, "0"));
   }
 
   /// Converts a hex string to a binary string
@@ -44,7 +43,7 @@ class NanoHelpers {
   }
 
   static Uint8List reverse(Uint8List bytes) {
-    Uint8List reversed = new Uint8List(bytes.length);
+    Uint8List reversed = Uint8List(bytes.length);
     for (int i = bytes.length; i > 0; i--) {
       reversed[bytes.length - i] = bytes[i - 1];
     }
@@ -52,7 +51,7 @@ class NanoHelpers {
   }
 
   static bool isHexString(String input) {
-    var hexChars = [
+    List<String> hexChars = [
       '0',
       '1',
       '2',
@@ -82,5 +81,15 @@ class NanoHelpers {
       }
     }
     return true;
+  }
+
+  // Convert an integer to a byte array
+  static Uint8List intToBytes(int integer, int length) {
+    Uint8List ret = Uint8List(length);
+    for (int i = 0; i < length; i++) {
+      ret[i] = integer & 0xff;
+      integer = (integer - ret[i]) ~/ 256;
+    }
+    return NanoHelpers.reverse(ret);
   }
 }

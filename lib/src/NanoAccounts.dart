@@ -3,14 +3,14 @@ import "dart:typed_data" show Uint8List;
 import 'package:flutter_nano_core/flutter_nano_core.dart';
 
 class NanoAccounts {
-  static NanoAccountEncodes encoder = new NanoAccountEncodes();
+  static NanoAccountEncodes encoder = NanoAccountEncodes();
 
   static String createAccount(int accountType, String publicKey) {
     assert(accountType == NanoAccountType.BANANO ||
         accountType == NanoAccountType.NANO);
-    var binaryPubkey = NanoHelpers.hexToBinary(publicKey).padLeft(260, "0");
-    var encodedChecksum = calculatedEncodedChecksum(publicKey);
-    var encodedPubkey = encoder.encode(binaryPubkey);
+    String binaryPubkey = NanoHelpers.hexToBinary(publicKey).padLeft(260, "0");
+    String encodedChecksum = calculatedEncodedChecksum(publicKey);
+    String encodedPubkey = encoder.encode(binaryPubkey);
     return NanoAccountType.getPrefix(accountType) +
         encodedPubkey +
         encodedChecksum;
@@ -21,7 +21,7 @@ class NanoAccounts {
         accountType == NanoAccountType.NANO);
     assert(account != null);
     // Ensure regex match
-    RegExp regEx = new RegExp(NanoAccountType.getRegex(accountType));
+    RegExp regEx = RegExp(NanoAccountType.getRegex(accountType));
     return regEx.stringMatch(account);
   }
 
@@ -33,7 +33,7 @@ class NanoAccounts {
       return false;
     }
     // Ensure regex match
-    RegExp regEx = new RegExp(NanoAccountType.getRegex(accountType));
+    RegExp regEx = RegExp(NanoAccountType.getRegex(accountType));
     if (!regEx.hasMatch(account)) {
       return false;
     }

@@ -5,7 +5,7 @@ class NanoKeys {
     assert(NanoSeeds.isValidSeed(seed));
     assert(index >= 0);
     return NanoHelpers.byteToHex(Hashes.digest256(
-            [NanoHelpers.hexToBytes(seed), Hashes.intToUint8List(index, 4)]))
+            [NanoHelpers.hexToBytes(seed), NanoHelpers.intToBytes(index, 4)]))
         .toUpperCase();
   }
 
