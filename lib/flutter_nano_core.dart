@@ -11,3 +11,4 @@ export 'package:flutter_nano_core/src/NanoMnemomics.dart';
 export 'package:flutter_nano_core/src/NanoSeeds.dart';
 export 'package:flutter_nano_core/src/NanoSignatures.dart';
 export 'package:flutter_nano_core/src/tweetnacl_blake2b.dart';
+export 'package:flutter_nano_core/src/encrypt/nano_crypt.dart';

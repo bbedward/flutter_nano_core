@@ -1,4 +1,5 @@
-import 'dart:typed_data' show Uint8List;
+import 'dart:typed_data';
+import 'dart:convert';
 import 'package:hex/hex.dart';
 
 class NanoHelpers {
@@ -91,5 +92,27 @@ class NanoHelpers {
       integer = (integer - ret[i]) ~/ 256;
     }
     return NanoHelpers.reverse(ret);
+  }
+
+  /// Convert string to byte array
+  static Uint8List stringToBytesUtf8(String str) {
+    return utf8.encode(str);
+  } 
+
+  /// Convert byte array to string utf-8
+  static String bytesToUtf8String(Uint8List bytes) {
+    return utf8.decode(bytes);
+  }
+
+  /// Concatenates one or more byte arrays
+  ///
+  /// @param {List<Uint8List>} bytes
+  /// @returns {Uint8List}
+  static Uint8List concat(List<Uint8List> bytes) {
+    String hex = '';
+    bytes.forEach((v) {
+      hex += NanoHelpers.byteToHex(v);
+    });
+    return NanoHelpers.hexToBytes(hex);
   }
 }

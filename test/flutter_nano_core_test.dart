@@ -118,5 +118,24 @@ void main() {
       /// Turn it back to a seed
       expect(NanoMnemomics.mnemonicListToSeed(expectedWordsOrdered), seed);
     });
+    test('Can turn a utf-8 string into a byte array and back', () {
+      String originalStr = 'bbedward';
+      Uint8List asBytes = NanoHelpers.stringToBytesUtf8(originalStr);
+      expect(NanoHelpers.bytesToUtf8String(asBytes), originalStr);
+    });
+    test('Can concatenate byte arrays', () {
+      Uint8List hex1 = NanoHelpers.hexToBytes('CA02');
+      Uint8List hex2 = NanoHelpers.hexToBytes('F2D1');
+      expect(NanoHelpers.byteToHex(NanoHelpers.concat([hex1, hex2])), 'CA02F2D1');
+    });
+    test('Can encrypt and decrypt a seed/private key', () {
+      Uint8List seed = NanoHelpers.hexToBytes('E11A48D701EA1F8A66A4EB587CDC8808D726FE75B325DF204F62CA2B43F9ADA1');
+      String password = 'abc123';
+      // Encrypt seed
+      Uint8List encrypted = NanoCrypt.encrypt(seed, password);
+      // Decrypt seed
+      Uint8List decrypted = NanoCrypt.decrypt(encrypted, password);
+      expect(NanoHelpers.byteToHex(decrypted), NanoHelpers.byteToHex(seed));
+    });
   });
 }
