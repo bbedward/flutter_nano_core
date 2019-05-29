@@ -1,4 +1,5 @@
 import 'package:bip39/bip39.dart' as bip39;
+import 'package:bip39/src/wordlists/english.dart' as bip39words;
 
 import 'package:flutter_nano_core/src/NanoSeeds.dart';
 
@@ -18,5 +19,15 @@ class NanoMnemomics {
       throw Exception('Expected a 24-word list, got a ${words.length} list');
     }
     return bip39.mnemonicToEntropy(words.join(' ')).toUpperCase();
+  }
+
+  /// Validate a mnemonic word list
+  static bool validateMnemonic(List<String> words) {
+    return bip39.validateMnemonic(words.join(' '));
+  }
+
+  /// Validate a specific menmonic word
+  static bool isValidWord(String word) {
+    return bip39words.WORDLIST.contains(word);
   }
 }

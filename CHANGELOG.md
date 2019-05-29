@@ -1,3 +1,8 @@
+## [1.1.4] - May 29th, 2019
+
+* Add some validation methods to NanoMnemonics
+* Add NanoCrypt class which encrypts/decrypts a seed using a basic pbkdf2 derivator and AES
+
 ## [1.1.3] - May 23rd, 2019
 
 * Added NanoMnemomics class for turning a seed/private key into a 24-word list and back. Check tests for usage.
