@@ -16,6 +16,12 @@ void main() {
       expect(NanoAccounts.createAccount(NanoAccountType.BANANO, 
                                         NanoKeys.createPublicKey(privKey)),
             'ban_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc');
+      expect(NanoAccounts.createAccount(NanoAccountType.NOS, 
+                                        NanoKeys.createPublicKey(privKey)),
+            'nos_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc');
+      expect(NanoAccounts.createAccount(NanoAccountType.NOLLAR, 
+                                        NanoKeys.createPublicKey(privKey)),
+            'usd_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc');
       expect(NanoAccounts.createAccount(NanoAccountType.NANO, 
                                         NanoKeys.createPublicKey(privKey)),
             'nano_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc');
@@ -39,16 +45,22 @@ void main() {
       expect(NanoHelpers.byteToBigInt(byteRaw), raw);
     });
     test('test address validation', () {
-      // Three valid accounts
+      // Five valid accounts
       expect(NanoAccounts.isValid(NanoAccountType.BANANO, 'ban_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc'), true);
+      expect(NanoAccounts.isValid(NanoAccountType.NOS, 'nos_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc'), true);
+      expect(NanoAccounts.isValid(NanoAccountType.NOLLAR, 'usd_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc'), true);
       expect(NanoAccounts.isValid(NanoAccountType.NANO, 'xrb_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc'), true);
       expect(NanoAccounts.isValid(NanoAccountType.NANO, 'nano_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc'), true);
       // Invalid checksum
       expect(NanoAccounts.isValid(NanoAccountType.BANANO, 'ban_3zzzzzzzzzzzhw11111111111111111111111111111111111111spcronyu'), false);
+      expect(NanoAccounts.isValid(NanoAccountType.NOS, 'nos_3zzzzzzzzzzzhw11111111111111111111111111111111111111spcronyu'), false);
+      expect(NanoAccounts.isValid(NanoAccountType.NOLLAR, 'usd_3zzzzzzzzzzzhw11111111111111111111111111111111111111spcronyu'), false);
       // Too short of length
       expect(NanoAccounts.isValid(NanoAccountType.BANANO, 'ban_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkg'), false);
       // Invalid prefix
       expect(NanoAccounts.isValid(NanoAccountType.BANANO, 'xrb_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc'), false);
+      expect(NanoAccounts.isValid(NanoAccountType.NOS, 'xrb_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc'), false);
+      expect(NanoAccounts.isValid(NanoAccountType.NOLLAR, 'xrb_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc'), false);
     });
 
     test('test state block hash computation', () {
