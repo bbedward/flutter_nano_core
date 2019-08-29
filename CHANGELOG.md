@@ -1,3 +1,7 @@
+## [1.1.5] - August 29th, 2019
+
+* Deprecation notice. This package has been renamed to `nanodart`. It is available [here](https://pub.dev/packages/nanodart)
+
 ## [1.1.4] - May 29th, 2019
 
 * Add some validation methods to NanoMnemonics

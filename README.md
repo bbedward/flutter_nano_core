@@ -1,3 +1,9 @@
+# DEPRECATED
+
+## THIS PACKAGE HAS BEEN RENAMED
+
+You should use the new package, it has a new name [nanodart](https://pub.dev/packages/nanodart)
+
 # flutter_nano_core
 
 Low-level functions for NANO/BANANO written in DART. Similar structure to [jnano-commons](https://github.com/rotilho/jnano-commons) for Java
