@@ -6,7 +6,7 @@ You should use the new package, it has a new name [nanodart](https://pub.dev/pac
 
 # flutter_nano_core
 
-Low-level functions for NANO/BANANO written in DART. Similar structure to [jnano-commons](https://github.com/rotilho/jnano-commons) for Java
+Low-level functions for NANO/BANANO/NOS/NOLLAR written in DART. Similar structure to [jnano-commons](https://github.com/rotilho/jnano-commons) for Java
 
 Examples:
 
@@ -20,7 +20,7 @@ bool seedIsValid = NanoSeeds.isValid(randomSeed);
 String privateKey = NanoKeys.seedToPrivate(seed, 0);
 # Create public key from private key
 String publicKey = NanoKeys.createPublicKey(privateKey);
-# Create account from public get (nano_/ban_ address)
+# Create account from public get (nano_/ban_/nos_/usd_ address)
 String address = NanoAccounts.createAccount(NanoAccountType.NANO, publicKey);
 
 # Compute state block hash
